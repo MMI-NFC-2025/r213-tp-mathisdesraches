@@ -43,10 +43,60 @@ const offres = [
 <Layout titre="Offres">
   <h1>Offres</h1>
 
-  <div>
+  <button id="favori-button" class="btn">
+    Afficher les favoris
+  </button>
+  
+  <div class="liste-offres">
     {offres.map((offre) => (
-      <OffreCard offre={offre} />
+      <div class="offre" data-favori={offre.favori.toString()}>
+        <OffreCard offre={offre} />
+      </div>
     ))}
   </div>
   
 </Layout>
+
+
+<style>
+  .btn {
+    background: #475569;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 12px 0 18px;
+  }
+  .btn:hover {
+    filter: brightness(1.05);
+  }
+  .liste-offres {
+    display: grid;
+    gap: 14px;
+  }
+</style>
+
+<script>
+  const button = document.getElementById("favori-button") as HTMLButtonElement | null;
+  let showOnlyFavorites = false;
+
+  button?.addEventListener("click", () => {
+    showOnlyFavorites = !showOnlyFavorites;
+
+    const offres = document.querySelectorAll<HTMLElement>(".offre");
+
+    offres.forEach((offre) => {
+      const isFavori = offre.dataset.favori === "true";
+
+      if (showOnlyFavorites) {
+        offre.style.display = isFavori ? "block" : "none";
+        button.textContent = "Afficher tout";
+      } else {
+        offre.style.display = "block";
+        button.textContent = "Afficher les favoris";
+      }
+    });
+  });
+</script>
+
