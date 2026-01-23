@@ -1,0 +1,53 @@
+---
+const { offre } = Astro.props;
+---
+
+<div class="card">
+  <h2>{offre.nomMaison}</h2>
+  <p class="adresse">{offre.adresse}</p>
+
+  <div class="infos">
+    <span>{offre.nbChambres} chambres</span>
+    <span>{offre.nbSdb} sdb</span>
+    <span>{offre.surface} m²</span>
+  </div>
+
+  <p class="prix">{offre.prix} € / mois</p>
+
+  <p class="badge" data-favori={offre.favori ? "true" : "false"}>
+    {offre.favori ? "★ Favori" : "☆ Non favori"}
+  </p>
+</div>
+
+<style>
+  .card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .adresse {
+    color: #555;
+    margin: 6px 0 10px;
+  }
+  .infos {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 10px;
+  }
+  .prix {
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 14px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: #f3f4f6;
+  }
+</style>

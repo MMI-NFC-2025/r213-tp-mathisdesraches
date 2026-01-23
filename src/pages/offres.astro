@@ -1,5 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import OffreCard from "../components/OffreCard.astro";
+
 
 const offres = [
   {
@@ -42,10 +44,9 @@ const offres = [
   <h1>Offres</h1>
 
   <div>
-    <ul>
-      {offres.map((offre) => (
-        <li>{offre.nomMaison}</li>
-      ))}
-    </ul>
+    {offres.map((offre) => (
+      <OffreCard offre={offre} />
+    ))}
   </div>
+  
 </Layout>
